@@ -34,7 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.createButton = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -51,6 +52,8 @@
             this.tbCompagnie = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbCodeIata = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbClasseBag = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +81,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(745, 134);
+            this.groupBox1.Size = new System.Drawing.Size(746, 134);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Recherche";
@@ -114,11 +117,11 @@
             this.textBox1.Size = new System.Drawing.Size(530, 26);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "401640989800";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.statusStrip1);
+            this.groupBox2.Controls.Add(this.createButton);
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.button2);
@@ -135,30 +138,45 @@
             this.groupBox2.Controls.Add(this.tbCompagnie);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.tbCodeIata);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.tbClasseBag);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 134);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(745, 389);
+            this.groupBox2.Size = new System.Drawing.Size(746, 389);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Résultat";
             // 
-            // statusStrip1
+            // createButton
             // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip1.Location = new System.Drawing.Point(4, 362);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(737, 22);
-            this.statusStrip1.TabIndex = 18;
-            this.statusStrip1.Text = "statusStrip1";
+            this.createButton.Location = new System.Drawing.Point(582, 195);
+            this.createButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.createButton.Name = "createButton";
+            this.createButton.Size = new System.Drawing.Size(112, 35);
+            this.createButton.TabIndex = 19;
+            this.createButton.Text = "Créer";
+            this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(556, 322);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(158, 42);
+            this.button4.TabIndex = 18;
+            this.button4.Text = "Nouveau bagage";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(600, 35);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 41);
+            this.button3.Size = new System.Drawing.Size(114, 42);
             this.button3.TabIndex = 17;
             this.button3.Text = "Rechercher";
             this.button3.UseVisualStyleBackColor = true;
@@ -166,7 +184,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(199, 344);
+            this.textBox2.Location = new System.Drawing.Point(200, 345);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 26);
             this.textBox2.TabIndex = 16;
@@ -175,9 +193,9 @@
             // button2
             // 
             this.button2.AccessibleName = "";
-            this.button2.Location = new System.Drawing.Point(18, 327);
+            this.button2.Location = new System.Drawing.Point(18, 328);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 35);
+            this.button2.Size = new System.Drawing.Size(80, 35);
             this.button2.TabIndex = 15;
             this.button2.Text = "GetById";
             this.button2.UseVisualStyleBackColor = true;
@@ -306,11 +324,30 @@
             this.tbCodeIata.TabIndex = 2;
             this.tbCodeIata.TextChanged += new System.EventHandler(this.tbCodeIata_TextChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 40);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Classe bagage :";
+            // 
+            // tbClasseBag
+            // 
+            this.tbClasseBag.Location = new System.Drawing.Point(166, 35);
+            this.tbClasseBag.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbClasseBag.Name = "tbClasseBag";
+            this.tbClasseBag.Size = new System.Drawing.Size(148, 26);
+            this.tbClasseBag.TabIndex = 0;
+            this.tbClasseBag.TextChanged += new System.EventHandler(this.tbClasseBag_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 523);
+            this.ClientSize = new System.Drawing.Size(746, 523);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -331,6 +368,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbClasseBag;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbCompagnie;
         private System.Windows.Forms.Label label3;
@@ -348,7 +387,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-    }
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button createButton;
+	}
 }
 

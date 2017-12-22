@@ -26,7 +26,7 @@ namespace Client.FormIhm
             var bagage2 = MyAirport.Pim.Model.Factory.Model.GetBagage(this.textBox1.Text);
             //Appel via codeIata mais avec deux valeur trouvées
             var bagage3 = MyAirport.Pim.Model.Factory.Model.GetBagage("007410201500");
-            
+
         }
 
         private void insertButton_Click(object sender, EventArgs e)
@@ -71,20 +71,118 @@ namespace Client.FormIhm
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
+            BagageDefinition bagage = MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
+            if (null != bagage)
+            {
+                // Fetch value and put into fields
+                this.tbClasseBag.Text = bagage.ClasseBagage.ToString();
+                this.tbCodeIata.Text = bagage.CodeIata;
+                this.tbCompagnie.Text = bagage.Compagnie;
+                this.cbContinuation.Checked = bagage.Continuation;
+                this.tbItineraire.Text = bagage.Itineraire;
+                this.tbJourExploitation.Text = bagage.JourExploitation.ToString();
+                this.tbLigne.Text = bagage.Ligne.ToString();
+                this.tbAlpha.Text = bagage.LigneAlpha.ToString();
+                this.cbRush.Checked = bagage.Rush;
+
+                setOnReadOnlyFields();
+
+                // Bagage found: impossible de create a new one, so disable Créer button
+                this.createButton.Enabled = false;
+            }
+            else if (false)
+            { // Check if there is multiple bagages
+                MessageBox.Show("Erreur: Plusieurs bagages ont été trouvés.");
+            }
+            else
+            {
+                setOnWriteFields();
+                this.textBox1.ReadOnly = true;
+                this.createButton.Enabled = true;
+            }
+        }
+
+        // Lock fields into read-only state
+        private void setOnReadOnlyFields()
+        {
+            this.textBox1.ReadOnly = true;
+            this.tbClasseBag.ReadOnly = true;
+            this.tbCodeIata.ReadOnly = true;
+            this.tbCompagnie.ReadOnly = true;
+            this.cbContinuation.Enabled = false;
+            this.tbItineraire.ReadOnly = true;
+            this.tbJourExploitation.ReadOnly = true;
+            this.tbLigne.ReadOnly = true;
+            this.tbAlpha.ReadOnly = true;
+            this.cbRush.Enabled = false;
+        }
+        private void setOnWriteFields()
+        {
+            this.textBox1.ReadOnly = false;
+            this.tbClasseBag.ReadOnly = false;
+            this.tbCodeIata.ReadOnly = false;
+            this.tbCompagnie.ReadOnly = false;
+            this.cbContinuation.Enabled = true;
+            this.tbItineraire.ReadOnly = false;
+            this.tbJourExploitation.ReadOnly = false;
+            this.tbLigne.ReadOnly = false;
+            this.tbAlpha.ReadOnly = false;
+            this.cbRush.Enabled = true;
+        }
+
+        // TODO: Nouveau bagage button 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // Should reset all fields of the UI
+            resetFields();
+            setOnReadOnlyFields();
+            this.textBox1.Enabled = true;
+        }
+
+        private void resetFields()
+        {
+            // TextBox Code Iata recherche
+            this.textBox1.Text = "";
+
+            // TextBox Classe bagage
+            this.tbClasseBag.Text = "";
+            // TextBox Code Iata
+            this.tbCodeIata.Text = "";
+            // TextBox Compagnie
+            this.tbCompagnie.Text = "";
+            // Checkbox Continuation
+            this.cbContinuation.Checked = false;
+            // TextBox Itinéraire
+            this.tbItineraire.Text = "";
+            // TextBox Jour d'exploitation
+            this.tbJourExploitation.Text = "";
+            // TextBox Ligne
+            this.tbLigne.Text = "";
+            this.tbAlpha.Text = "";
+            // Checkbox Rush
+            this.cbRush.Checked = false;
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            BagageDefinition bagage = new BagageDefinition();
+
+            try
+            {
+                MyAirport.Pim.Model.Factory.Model.CreateBagage(bagage);
+                MessageBox.Show("Succès: création du bagage réussite.");
+                resetFields();
+            }
+            catch (Exception ex)
+            { // TODO: Put the right exception when impossible to create a new bagage
+                MessageBox.Show("Erreur: impossible de créer un nouveau bagage.");
+                String tmp = this.textBox1.Text;
+                resetFields();
+                this.textBox1.Text = tmp;
+            }
         }
 
         private void tbJourExploitation_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void commandeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
