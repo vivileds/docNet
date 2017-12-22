@@ -71,7 +71,30 @@ namespace Client.FormIhm
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
-        }
-    }
+			MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
+		}
+
+		// TODO: Nouveau bagage button 
+		private void button4_Click(object sender, EventArgs e) {
+			// Should reset all fields of the UI
+
+			// TextBox Classe bagage
+			this.tbClasseBag.Text = "";
+			// TextBox Code Iata
+			this.tbCodeIata.Text = "";
+			// TextBox Compagnie
+			this.tbCompagnie.Text = "";
+			// Checkbox Continuation
+			this.cbContinuation.Checked = false;
+			// TextBox Itinéraire
+			this.tbItineraire.Text = "";
+			// TextBox Jour d'exploitation
+			this.tbJourExploitation.Text = "";
+			// TextBox Ligne
+			this.tbLigne.Text = "";
+			this.tbAlpha.Text = "";
+			// Checkbox Rush
+			this.cbRush.Checked = false;
+		}
+	}
 }
