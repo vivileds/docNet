@@ -73,5 +73,20 @@ namespace Client.FormIhm
         {
             MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
         }
+
+        private void tbJourExploitation_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void commandeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
