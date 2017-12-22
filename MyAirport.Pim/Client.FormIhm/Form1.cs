@@ -84,12 +84,20 @@ namespace Client.FormIhm
 				this.tbAlpha.Text = bagage.LigneAlpha.ToString();
 				this.cbRush.Checked = bagage.Rush;
 
-				readOnlyFields();
+				setOnReadOnlyFields();
+
+				// Bagage found: impossible de create a new one, so disable Créer button
+				this.createButton.Enabled = false;
+			} else {
+				setOnWriteFields();
+				this.textBox1.ReadOnly = true;
+				this.createButton.Enabled = true;
 			}
 		}
 
 		// Lock fields into read-only state
-		private void readOnlyFields() {
+		private void setOnReadOnlyFields() {
+			this.textBox1.ReadOnly = true;
 			this.tbClasseBag.ReadOnly = true;
 			this.tbCodeIata.ReadOnly = true;
 			this.tbCompagnie.ReadOnly = true;
@@ -99,6 +107,18 @@ namespace Client.FormIhm
 			this.tbLigne.ReadOnly = true;
 			this.tbAlpha.ReadOnly = true;
 			this.cbRush.Enabled = false;
+		}
+		private void setOnWriteFields() {
+			this.textBox1.ReadOnly = false;
+			this.tbClasseBag.ReadOnly = false;
+			this.tbCodeIata.ReadOnly = false;
+			this.tbCompagnie.ReadOnly = false;
+			this.cbContinuation.Enabled = true;
+			this.tbItineraire.ReadOnly = false;
+			this.tbJourExploitation.ReadOnly = false;
+			this.tbLigne.ReadOnly = false;
+			this.tbAlpha.ReadOnly = false;
+			this.cbRush.Enabled = true;
 		}
 
 		// TODO: Nouveau bagage button 

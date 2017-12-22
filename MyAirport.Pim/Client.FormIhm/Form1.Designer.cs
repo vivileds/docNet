@@ -53,6 +53,7 @@
 			this.tbCodeIata = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.tbClasseBag = new System.Windows.Forms.TextBox();
+			this.createButton = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -113,6 +114,7 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.createButton);
 			this.groupBox2.Controls.Add(this.button4);
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Controls.Add(this.textBox2);
@@ -308,6 +310,15 @@
 			this.tbClasseBag.TabIndex = 0;
 			this.tbClasseBag.TextChanged += new System.EventHandler(this.tbClasseBag_TextChanged);
 			// 
+			// createButton
+			// 
+			this.createButton.Location = new System.Drawing.Point(388, 127);
+			this.createButton.Name = "createButton";
+			this.createButton.Size = new System.Drawing.Size(75, 23);
+			this.createButton.TabIndex = 19;
+			this.createButton.Text = "Créer";
+			this.createButton.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,6 +363,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button createButton;
 	}
 }
 
