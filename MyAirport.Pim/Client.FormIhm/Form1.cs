@@ -88,7 +88,9 @@ namespace Client.FormIhm
 
 				// Bagage found: impossible de create a new one, so disable Créer button
 				this.createButton.Enabled = false;
-			} else {
+			} else if (false) { // Check if there is multiple bagages
+				MessageBox.Show("Erreur: Plusieurs bagages ont été trouvés.");
+			}  else {
 				setOnWriteFields();
 				this.textBox1.ReadOnly = true;
 				this.createButton.Enabled = true;
@@ -124,6 +126,14 @@ namespace Client.FormIhm
 		// TODO: Nouveau bagage button 
 		private void button4_Click(object sender, EventArgs e) {
 			// Should reset all fields of the UI
+			resetFields();
+			setOnReadOnlyFields();
+			this.textBox1.Enabled = true;
+		}
+
+		private void resetFields() {
+			// TextBox Code Iata recherche
+			this.textBox1.Text = "";
 
 			// TextBox Classe bagage
 			this.tbClasseBag.Text = "";
@@ -142,6 +152,21 @@ namespace Client.FormIhm
 			this.tbAlpha.Text = "";
 			// Checkbox Rush
 			this.cbRush.Checked = false;
+		}
+
+		private void createButton_Click(object sender, EventArgs e) {
+			BagageDefinition bagage = new BagageDefinition();
+
+			try {
+				MyAirport.Pim.Model.Factory.Model.CreateBagage(bagage);
+				MessageBox.Show("Succès: création du bagage réussite.");
+				resetFields();
+			} catch (Exception ex) { // TODO: Put the right exception when impossible to create a new bagage
+				MessageBox.Show("Erreur: impossible de créer un nouveau bagage.");
+				String tmp = this.textBox1.Text;
+				resetFields();
+				this.textBox1.Text = tmp;
+			}
 		}
 	}
 }
