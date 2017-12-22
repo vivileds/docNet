@@ -71,7 +71,34 @@ namespace Client.FormIhm
 
         private void button3_Click(object sender, EventArgs e)
         {
-			MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
+			BagageDefinition bagage = MyAirport.Pim.Model.Factory.Model.GetBagage(this.tbCodeIata.Text);
+			if (null != bagage) {
+				// Fetch value and put into fields
+				this.tbClasseBag.Text = bagage.ClasseBagage.ToString();
+				this.tbCodeIata.Text = bagage.CodeIata;
+				this.tbCompagnie.Text = bagage.Compagnie;
+				this.cbContinuation.Checked = bagage.Continuation;
+				this.tbItineraire.Text = bagage.Itineraire;
+				this.tbJourExploitation.Text = bagage.JourExploitation.ToString();
+				this.tbLigne.Text = bagage.Ligne.ToString();
+				this.tbAlpha.Text = bagage.LigneAlpha.ToString();
+				this.cbRush.Checked = bagage.Rush;
+
+				readOnlyFields();
+			}
+		}
+
+		// Lock fields into read-only state
+		private void readOnlyFields() {
+			this.tbClasseBag.ReadOnly = true;
+			this.tbCodeIata.ReadOnly = true;
+			this.tbCompagnie.ReadOnly = true;
+			this.cbContinuation.Enabled = false;
+			this.tbItineraire.ReadOnly = true;
+			this.tbJourExploitation.ReadOnly = true;
+			this.tbLigne.ReadOnly = true;
+			this.tbAlpha.ReadOnly = true;
+			this.cbRush.Enabled = false;
 		}
 
 		// TODO: Nouveau bagage button 
